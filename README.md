@@ -19,6 +19,7 @@ Feitos:
 Em andamento:
 * Extrair valores das linhas
  - Identificar se o valor da linguagem humana está em romanos ou inteiros OK
+ - Identificar a posição na frase que está o valor em liguagem humana (p int OK)
  - Transformar em romanos se necessário
  - Conectar as palavras intergalacticas ao valor em romano
 
