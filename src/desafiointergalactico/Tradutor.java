@@ -14,14 +14,17 @@ package desafiointergalactico;
 public final class Tradutor {
     private String I, V, X, L, C, D, M;
     private String frase;
+    private int cont; //conta o número de afirmação que estamos para não ocorrer sobreposição
+    private String[][] galacti;
+    private double[] humano; //tradução para números da linguagem humana
     
     
     public Tradutor(){
-        
+        galacti = new String[0][0];
     }
     
     public String getFrase(){
-        return frase;    
+        return frase;
     }
    
     public void setFrase(String frase){
@@ -53,83 +56,79 @@ public final class Tradutor {
             try{
                 Integer.parseInt(afirm[i]); 
                 tipoR = false;
-                posicao = i;
+                posicao = i; //já vai retornar em qual posição está o número inteiro
             } catch(NumberFormatException e){
                 //verificar em qual posição está o número em romano
-                if(ehRomano((afirm[i])){
+                if(ehRomano(afirm[i])){
                     posicao = i;
                 }
             }
         }
+        System.out.println(posicao);
+        // Considerando que o número galactico esteja sempre no inicio e separado por uma palavra (ex.: representa, vale)
+        String[] gala = new String[posicao - 1];
         
+        for(int i = 0; i < gala.length; i++){
+            gala[i] = afirm[i]; //gala é uma variavel que vai sumir, então vou colocar ela em uma matriz para pegar todas as respostas
+        }
+        // Armazenas número galctico
+        atualizaMatriz(gala);
+        
+        //PARA ARMAZENAR O NÚMERO EM ROMANO
         String roman = "";
         
         if(tipoR == false){
             int decimal = Integer.parseInt(afirm[posicao]); 
-            roman = intToRoman(decimal);
         } else {
-            System.out.println("está em romano");
-            
+            System.out.println("Está em romano");
         }
         System.out.println("Em romano: " + roman);
         
+        
+        //Terminado de analisar a afirmatica
+        cont++;
     }
     
     public static boolean ehRomano(String roman){
         char letra;
         for(int i = 0; i < roman.length(); i++){
             letra = roman.charAt(i);
-            if(letra != 'I' && letra != V && letra != X){ 
-            
+            if(letra != 'I' && letra != 'V' && letra != 'X'){ 
+                if(letra != 'L' && letra != 'C' && letra != 'M'){
+                    return false;
+                }
             }
         }
         return true;
     }
     
-    public static String intToRoman(int decimal){ //erro para 40, 400
-        String roman = "";
-        if ( decimal > 0 && decimal < 4000 ) {
-           
-            for(int i = 0; i < decimal/1000; i++){
-                roman = roman +"M";
-            }
-            decimal = decimal % 1000;
-            
-            for(int i = 0; i < decimal/500; i++){
-                roman = roman + "D";
-            }
-            decimal = decimal % 500;
-            
-            for(int i = 0; i < decimal/100; i++){
-                roman = roman + "C";
-            }
-            decimal = decimal % 100;
-            
-            for(int i = 0; i < decimal/50; i++){
-                roman = roman + "L" ;
-            }
-            decimal = decimal % 50;
-            
-            for(int i = 0; i < decimal/10; i++){
-                roman = roman + "X";
-            }
-            decimal = decimal % 10;
-            
-            for(int i = 0; i < decimal/5; i++){
-                roman = roman + "V";
-            }
-            decimal = decimal % 5;
-            
-            for(int i = 0; i < decimal/1; i++){
-                roman = roman + "I";
-            }
-            decimal = decimal % 1;
-            
+    public void atualizaMatriz(String[] novaLinha){
+        String[][] nova;
+        if(galacti[0].length > novaLinha.length){
+            nova = new String [galacti.length][galacti[0].length];
         } else {
-            return "Não faço a minima ideia";
+            nova = new String [galacti.length][novaLinha.length];
         }
-        return roman;
+        
+        for(int i = 0; i < galacti.length; i++){
+            for(int j = 0; j < galacti[0].length; j++){
+                nova[i][j] = galacti[i][j];
+            }
+        }
+        for(int j = 0; j < novaLinha.length; j++){
+                nova[cont][j] = novaLinha[j];
+        }        
+        
+        galacti = nova;
+        
+        for(int i = 0; i < galacti.length; i++){
+            for(int j = 0; j < galacti[0].length; j++){
+                System.out.print(galacti[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
+    
             
         
 }
