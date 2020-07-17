@@ -20,7 +20,8 @@ public final class Tradutor {
     
     
     public Tradutor(){
-        galacti = new String[0][0];
+        galacti = new String[1][1];
+        humano = new double[1];
     }
     
     public String getFrase(){
@@ -50,6 +51,7 @@ public final class Tradutor {
     }
     
     public void aprende(String[] afirm){ //se for afirmaçao vem p cá
+        cont++;
         boolean tipoR = true;
         int posicao = 0;
         for(int i = 0; i < afirm.length; i++){
@@ -85,8 +87,8 @@ public final class Tradutor {
         System.out.println("Em romano: " + roman);
         
         
-        //Terminado de analisar a afirmatica
-        cont++;
+        
+        
     }
     
     public static boolean ehRomano(String roman){
@@ -105,9 +107,9 @@ public final class Tradutor {
     public void atualizaMatriz(String[] novaLinha){
         String[][] nova;
         if(galacti[0].length > novaLinha.length){
-            nova = new String [galacti.length][galacti[0].length];
+            nova = new String [cont][galacti[0].length];
         } else {
-            nova = new String [galacti.length][novaLinha.length];
+            nova = new String [cont][novaLinha.length];
         }
         
         for(int i = 0; i < galacti.length; i++){
@@ -116,8 +118,8 @@ public final class Tradutor {
             }
         }
         for(int j = 0; j < novaLinha.length; j++){
-                nova[cont][j] = novaLinha[j];
-        }        
+                nova[cont - 1][j] = novaLinha[j];
+        }
         
         galacti = nova;
         
@@ -129,6 +131,21 @@ public final class Tradutor {
         }
     }
     
+    public void atualizaArray(double valor){
+        double[] novo;
+        novo = new double[cont];
+        
+        for(int i = 0; i < humano.length; i++){
+            novo[i] = humano[i];
+        }
+        novo[cont - 1] = valor;
+        
+        humano = novo;
+        
+        for(int j = 0; j < humano.length; j++){
+                System.out.print(humano[j] + " ");
+            }
+    }
             
         
 }

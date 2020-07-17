@@ -40,11 +40,12 @@ Em andamento:
  - Identificar se o valor da linguagem humana está em romanos ou inteiros OK
  - Identificar a posição na frase que está o valor em liguagem humana OK
  - Conectar as palavras intergalacticas ao valor
- - Transformar em romanos se necessário
+  - Criar matriz p armazenar todos valores conhecidos OK
+  - Criar método (2) para gerenciar o tamanho das matriz FUNCIONAL
  
 
 A fazer:
-* Arrumar iintToRoman - Aplicar regra de 4 letras iguais
+* Arrumar intToRoman - Aplicar regra de 4 letras iguais EXCLUIR
 * Responder alguma entrada
 * Adicionar mais regras
 * Revisar e corrigir erros
