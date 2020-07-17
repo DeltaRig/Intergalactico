@@ -34,9 +34,6 @@ public class DesafioIntergalactico {
             try(BufferedReader reader = new BufferedReader(new FileReader(path));){
                 // ler o arquivo e enviar para a tradução
                 for (String linha = reader.readLine(); linha != null; linha = reader.readLine()){
-                
-                    linha = reader.readLine();
-                    
                     traduz.setFrase(linha); //Traduz recebe a frase
 
                     traduz.trad();

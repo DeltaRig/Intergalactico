@@ -48,30 +48,82 @@ public final class Tradutor {
     
     public void aprende(String[] afirm){ //se for afirmaçao vem p cá
         boolean tipoR = true;
+        int posicao = 0;
         for(int i = 0; i < afirm.length; i++){
             try{
                 Integer.parseInt(afirm[i]); 
                 tipoR = false;
+                posicao = i;
             } catch(NumberFormatException e){
+                //verificar em qual posição está o número em romano
+                if(ehRomano((afirm[i])){
+                    posicao = i;
+                }
             }
         }
         
+        String roman = "";
+        
         if(tipoR == false){
-            System.out.println("tem que passar para romano");
+            int decimal = Integer.parseInt(afirm[posicao]); 
+            roman = intToRoman(decimal);
         } else {
             System.out.println("está em romano");
+            
         }
-        
+        System.out.println("Em romano: " + roman);
         
     }
     
-    public static String intToRoman(int decimal){
+    public static boolean ehRomano(String roman){
+        char letra;
+        for(int i = 0; i < roman.length(); i++){
+            letra = roman.charAt(i);
+            if(letra != 'I' && letra != V && letra != X){ 
+            
+            }
+        }
+        return true;
+    }
+    
+    public static String intToRoman(int decimal){ //erro para 40, 400
         String roman = "";
         if ( decimal > 0 && decimal < 4000 ) {
-            // M
+           
+            for(int i = 0; i < decimal/1000; i++){
+                roman = roman +"M";
+            }
+            decimal = decimal % 1000;
             
+            for(int i = 0; i < decimal/500; i++){
+                roman = roman + "D";
+            }
+            decimal = decimal % 500;
             
+            for(int i = 0; i < decimal/100; i++){
+                roman = roman + "C";
+            }
+            decimal = decimal % 100;
             
+            for(int i = 0; i < decimal/50; i++){
+                roman = roman + "L" ;
+            }
+            decimal = decimal % 50;
+            
+            for(int i = 0; i < decimal/10; i++){
+                roman = roman + "X";
+            }
+            decimal = decimal % 10;
+            
+            for(int i = 0; i < decimal/5; i++){
+                roman = roman + "V";
+            }
+            decimal = decimal % 5;
+            
+            for(int i = 0; i < decimal/1; i++){
+                roman = roman + "I";
+            }
+            decimal = decimal % 1;
             
         } else {
             return "Não faço a minima ideia";
