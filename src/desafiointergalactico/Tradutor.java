@@ -17,7 +17,7 @@ public final class Tradutor {
     
     
     public Tradutor(){
-        setFrase(" ");
+        
     }
     
     public String getFrase(){
@@ -32,28 +32,28 @@ public final class Tradutor {
     public void trad(){
         System.out.println(frase);
         String[] fraseV = frase.split(" ");
-        System.out.println(fraseV[fraseV.length -1]);
         boolean classifica = classific(fraseV);
         System.out.println(classifica);
+        if(classifica == true) { //afirmacao
+            aprende(fraseV);
+            
+        }
     }
    
     public boolean classific(String[] fraseV){ //classifica se é afirmação ou pergunta
         String up = fraseV[fraseV.length -1];  //nenhuma frase chega aqui vazia (lenght == 0) | up = última palavra
-        System.out.println(up);
         char uLetra = up.charAt(up.length() -1);
-        System.out.println(uLetra);
         return uLetra != '?'; //true corresponde a afirmação e false corresponde pergunta
     }
     
     public void aprende(String[] afirm){ //se for afirmaçao vem p cá
-        String up = afirm[afirm.length -1]; //pega a última palavra
-        
         boolean tipoR = true;
-        try{
-            Integer.parseInt(up); 
-            tipoR = false;
-        } catch(NumberFormatException e){
-            tipoR = true;
+        for(int i = 0; i < afirm.length; i++){
+            try{
+                Integer.parseInt(afirm[i]); 
+                tipoR = false;
+            } catch(NumberFormatException e){
+            }
         }
         
         if(tipoR == false){
@@ -64,7 +64,25 @@ public final class Tradutor {
         
         
     }
+    
+    public static String intToRoman(int decimal){
+        String roman = "";
+        if ( decimal > 0 && decimal < 4000 ) {
+            // M
+            
+            
+            
+            
+        } else {
+            return "Não faço a minima ideia";
+        }
+        return roman;
+    }
+            
+        
 }
+
+
 
     
     

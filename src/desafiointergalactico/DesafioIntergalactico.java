@@ -20,39 +20,29 @@ public class DesafioIntergalactico {
         Tradutor traduz;
         traduz = new Tradutor();
         
-        String linha = "Quantos anos?";
-        System.out.println(linha);
-        traduz.setFrase(linha); //Traduz recebeu a frase
-        traduz.setFrase(linha);
-        traduz.trad();
-        
         boolean verifica = false;
+        
         boolean classific;
         String resposta = "";
         
         do{ 
             verifica = false;
-            System.out.println("Digite o caminho para o arquivo (com seu nome)"
-                    + "\nEx.: /caminho/arquivo.txt");
-            String arquivo = scan.nextLine();
+            System.out.println("Digite o caminho para o arquivo (com o nome do arquivo)"
+                    + "\nEx.: C:/Users/(nome)/Documents/arquivo.txt");
+            String path = scan.nextLine();
             
-            try{
+            try(BufferedReader reader = new BufferedReader(new FileReader(path));){
                 // ler o arquivo e enviar para a tradução
-                BufferedReader buffRead = new BufferedReader(new FileReader(arquivo));
-                linha = "";
-                while (true) {
-                    if (linha != null) {
-                        System.out.println(linha);
-                        traduz.setFrase(linha); //Traduz recebeu a frase
-                        
-                        traduz.trad();
-                        
-                    } else
-                        break;
-                    linha = buffRead.readLine();
-                }
+                for (String linha = reader.readLine(); linha != null; linha = reader.readLine()){
                 
-                buffRead.close();
+                    linha = reader.readLine();
+                    
+                    traduz.setFrase(linha); //Traduz recebe a frase
+
+                    traduz.trad();
+                
+                }
+                reader.close();
                 verifica = true;
             } catch (IOException e) {
                 System.out.println("O arquivo não foi encontrado");
