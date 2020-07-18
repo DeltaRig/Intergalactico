@@ -8,12 +8,14 @@ Desenvolvedora: [Daniela Rigoli](https://www.linkedin.com/in/daniela-rigoli-304b
 Onde se recebe o arquivo com afirmações e perguntas e retorna as respostas para as perguntas.
 
 Métodos usados:
+
 main
 
 #### Classe Tradutor:
 Faz todo processo de encontrar correspondência entre os números intergaláticos e os números dos humanos para conseguir responder as perguntas.
 
 Métodos usados:
+
 métodos básicos
 
 trad: faz o encaminhamento para as outras classes para obter o resultado desejado
@@ -33,7 +35,6 @@ traduzirUnidade: retorna o valor da unidade do número intergalático
 responde: analisa a pergunta e mostra ao usuário a resposta
 
 ## Desenvolvimento:
-Feitos:
 * Recebe o arquivo
 * Lê linha por linha
 * Etapa de classificar afirmações e perguntas
