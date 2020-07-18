@@ -51,4 +51,8 @@ Instruções para o arquivo:
 - Perguntas devem terminar com "?"
 - Se não ouver informação suficiente para responder a pergunta ou ela for formulada de outra forma o programa irá retornar "Nem ideia do que isto significa!"
 
+Executar o comando abaixo no diretório dist
 
+´´´
+java -jar "DesafioIntergalactico.jar" 
+´´´
