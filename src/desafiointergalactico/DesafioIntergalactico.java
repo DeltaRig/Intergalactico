@@ -22,21 +22,22 @@ public class DesafioIntergalactico {
         
         boolean verifica = false;
         
-        boolean classific;
-        String resposta = "";
         
         do{ 
             verifica = false;
             System.out.println("Digite o caminho para o arquivo (com o nome do arquivo)"
                     + "\nEx.: C:/Users/(nome)/Documents/arquivo.txt");
+        
             String path = scan.nextLine();
             
             try(BufferedReader reader = new BufferedReader(new FileReader(path));){
                 // ler o arquivo e enviar para a tradução
                 for (String linha = reader.readLine(); linha != null; linha = reader.readLine()){
-                    traduz.setFrase(linha); //Traduz recebe a frase
-
-                    traduz.trad();
+                    if(linha.length() > 0){
+                        traduz.setFrase(linha); //Traduz recebe a frase
+                        traduz.trad();
+                    }
+                    
                 
                 }
                 reader.close();

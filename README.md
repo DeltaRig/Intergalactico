@@ -8,12 +8,14 @@ Desenvolvedora: [Daniela Rigoli](https://www.linkedin.com/in/daniela-rigoli-304b
 Onde se recebe o arquivo com afirmações e perguntas e retorna as respostas para as perguntas.
 
 Métodos usados:
+
 	main
 
 ####Classe Tradutor:
 Faz todo processo de encontrar correspondencia entre os números intergalaticos e os números dos humanos para conseguir responder as perguntas.
 
 Métodos usados:
+
 	métodos básicos
 
 	trad: faz o encaminhamento para as outras classes para obter o resultado desejado
@@ -32,9 +34,6 @@ Métodos usados:
 
 	responde: analisa a pergunta e mostra ao usuário a resposta
 
-
-
-
 ## Andamento:
 Feitos:
 * Recebe o arquivo
@@ -44,10 +43,18 @@ Feitos:
  - Identificar se o valor da linguagem humana está em romanos ou inteiros
  - Identificar valores galacticos
  - Identificar valores das unidades de metais
+* Responder alguma pergunta
 
 Em andamento:
-* Responder alguma entrada
+* Revisar e corrigir erros
 
 A fazer:
-* Revisar e corrigir erros
 * Revisar e otimizar os métodos
+
+## Como rodar:
+Instruções para o arquivo:
+- 7 linhas iniciais indicando a notação intergaláctica dos símbolos romanos, sequida de 0 ou mais linhas indicando o valor em créditos do número de unidades (expresso em intergalático) de metal sendo vendo vendido. Na sequência, linhas com perguntas "quanto vale" / "quantos créditos são".
+- Perguntas devem terminar com "?"
+- Se não ouver informação suficiente para responder a pergunta ou ela for formulada de outra forma o programa irá retornar "Nem ideia do que isto significa!"
+
+

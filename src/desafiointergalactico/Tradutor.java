@@ -33,8 +33,8 @@ public final class Tradutor {
     
     
     public void trad(){
-        System.out.println("\n" + frase);
         fraseV = frase.split(" ");
+        
         boolean classifica = classific();
         if(classifica) //afirmacao
             aprende(); // aqui ocorre todo processo para se aprender os valores galacticos
@@ -205,22 +205,38 @@ public final class Tradutor {
                     System.out.print(gala[i] + " ");
                 }
                 
+                double numGalacticoD = numGalactico;
                 if(gala[gala.length - 1].equals("Gold") || gala[gala.length - 1].equals("Ouro")){
-                    
-                    System.out.print("custa " + (numGalactico * gold) + " créditos");
+                    numGalacticoD = numGalactico * gold;
+                    if(numGalacticoD % 1 == 0){
+                        numGalactico = (int) numGalacticoD; 
+                        System.out.print("custa " + numGalactico + " créditos");
+                    } else {
+                        System.out.print("custa " + numGalacticoD + " créditos");
+                    }
                 } else if(gala[gala.length - 1].equals("Silver") || gala[gala.length - 1].equals("Prata")){
-                    System.out.print("custa " + (numGalactico * silver) + " créditos");
+                    numGalacticoD = numGalactico * silver;
+                    if(numGalacticoD % 1 == 0){
+                        numGalactico = (int) numGalacticoD; 
+                        System.out.print("custa " + numGalactico + " créditos");
+                    } else {
+                        System.out.print("custa " + numGalacticoD + " créditos");
+                    }
                 } else if(gala[gala.length - 1].equals("Iron") || gala[gala.length - 1].equals("Ferro")){
-                    System.out.print("custa " + (numGalactico * iron) + " créditos");
+                    numGalacticoD = numGalactico * iron;
+                    if(numGalacticoD % 1 == 0){
+                        numGalactico = (int) numGalacticoD; 
+                        System.out.print("custa " + numGalactico + " créditos");
+                    } else {
+                        System.out.print("custa " + numGalacticoD + " créditos");
+                    }
                 }
             }
-            
-            
-            
         } else//caso seja uma pergunta diferente do esperado
             System.out.println("Nem ideia do que isso significa!");
-        
+        System.out.println("");
     }
+    
 }
 
 
