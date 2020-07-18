@@ -3,12 +3,15 @@ krok representa V
 squid representa X
 leij representa L
 dog representa C
+act representa D
+filipe representa M
 snob snob Prata valem 34 créditos
+leij squid squid squid krok snob snob snob Iron valem 6721964 créditos
 snob krok Ouro valem 57800 créditos
-squid squid Iron valem 3910 créditos
 quanto vale dog dog ?
 quanto vale squid leij snob snob ?
 quantos créditos são snob krok Silver ?
 quantos créditos são snob krok Gold ?
-quantos créditos são snob krok Iron ?
+quantos créditos são leij squid squid snob Iron ?
+quantos créditos são wood could woodchuck mood ?
 quanto vale wood could woodchuck mood ?

@@ -34,7 +34,7 @@ Métodos usados:
 
 	responde: analisa a pergunta e mostra ao usuário a resposta
 
-## Andamento:
+## Desenvolvimento:
 Feitos:
 * Recebe o arquivo
 * Lê linha por linha
@@ -44,12 +44,6 @@ Feitos:
  - Identificar valores galacticos
  - Identificar valores das unidades de metais
 * Responder alguma pergunta
-
-Em andamento:
-* Revisar e corrigir erros
-
-A fazer:
-* Revisar e otimizar os métodos
 
 ## Como rodar:
 Instruções para o arquivo:

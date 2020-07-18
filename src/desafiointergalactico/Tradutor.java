@@ -72,10 +72,10 @@ public final class Tradutor {
                 tipoR = false;
                 posicao = i; //já vai retornar em qual posição está o número inteiro
             } catch(NumberFormatException e){
-                //verificar em qual posição está o número em romano
-                if(ehRomano(fraseV[i])){
-                    posicao = i;
-                }
+            }
+            //verificar em qual posição está o número em romano
+            if(ehRomano(fraseV[i])){
+                posicao = i;
             }
         }
         // Considerando que o número galactico esteja sempre no inicio e separado por uma palavra (ex.: representa, vale)
@@ -89,7 +89,6 @@ public final class Tradutor {
         if(tipoR == false){
             credito(gala);
         }
-     
         
     }
     
@@ -116,7 +115,7 @@ public final class Tradutor {
         } else if(roman.equals("M")){
             unidadesIntergalacticas[6] = fraseV[0];
             return true;
-        }        
+        }
         return false;
     }
     
@@ -144,31 +143,31 @@ public final class Tradutor {
         return n;
     }
 
-    private double traduzirUnidade(String valorG) {
-        int cont = 0;
+    private double traduzirUnidade(String valor) {
+        int contX = 0, contY = 0;
         double result;
         double x = 0;
         double y = 0;
-        for(int i = 0; i < unidadesIntergalacticas.length; i = i + 2){ //Então passa nos valores I, X, C e M
+        for(int i = 0; i < unidadesIntergalacticas.length; i++){ //Então passa nos valores I, X, C e M
             if(unidadesIntergalacticas[i] != null){
-                if(unidadesIntergalacticas[i].equals(valorG)){
-                    x = Math.pow(10 , cont);
+                if(i % 2 == 0){
+                    if(unidadesIntergalacticas[i].equals(valor)){
+                        x = Math.pow(10 , contX);
+                        contX++;
+                    }
+                } else {
+                    if(unidadesIntergalacticas[i].equals(valor)){
+                        y = 5 * Math.floor(Math.pow(10, contY));
+                    }
+                    contY++;
                 }
+                
             }
-            cont++;
         }
-        cont = 0;
-        for(int i = 1; i < unidadesIntergalacticas.length; i = i + 2){
-            if(unidadesIntergalacticas[i] != null){
-                if(unidadesIntergalacticas[i].equals(valorG)){
-                    y = 5 * Math.floor(Math.pow(10, cont));
-                }
-            }
-            cont++;
-        }
+        
         result = Math.floor(x + y);
         return result;
-    }            
+    }        
     
     private void responde(){
         if(fraseV[1].equalsIgnoreCase("vale")){
@@ -209,28 +208,20 @@ public final class Tradutor {
                 if(gala[gala.length - 1].equals("Gold") || gala[gala.length - 1].equals("Ouro")){
                     numGalacticoD = numGalactico * gold;
                     if(numGalacticoD % 1 == 0){
-                        numGalactico = (int) numGalacticoD; 
-                        System.out.print("custa " + numGalactico + " créditos");
-                    } else {
-                        System.out.print("custa " + numGalacticoD + " créditos");
+                        numGalactico = (int) numGalacticoD;
                     }
                 } else if(gala[gala.length - 1].equals("Silver") || gala[gala.length - 1].equals("Prata")){
                     numGalacticoD = numGalactico * silver;
                     if(numGalacticoD % 1 == 0){
-                        numGalactico = (int) numGalacticoD; 
-                        System.out.print("custa " + numGalactico + " créditos");
-                    } else {
-                        System.out.print("custa " + numGalacticoD + " créditos");
+                        numGalactico = (int) numGalacticoD;
                     }
                 } else if(gala[gala.length - 1].equals("Iron") || gala[gala.length - 1].equals("Ferro")){
                     numGalacticoD = numGalactico * iron;
                     if(numGalacticoD % 1 == 0){
                         numGalactico = (int) numGalacticoD; 
-                        System.out.print("custa " + numGalactico + " créditos");
-                    } else {
-                        System.out.print("custa " + numGalacticoD + " créditos");
                     }
                 }
+                System.out.print("custa " + numGalactico + " créditos");
             }
         } else//caso seja uma pergunta diferente do esperado
             System.out.println("Nem ideia do que isso significa!");

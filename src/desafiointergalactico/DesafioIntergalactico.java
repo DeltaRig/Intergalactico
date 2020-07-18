@@ -37,8 +37,6 @@ public class DesafioIntergalactico {
                         traduz.setFrase(linha); //Traduz recebe a frase
                         traduz.trad();
                     }
-                    
-                
                 }
                 reader.close();
                 verifica = true;
