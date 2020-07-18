@@ -34,20 +34,14 @@ Feitos:
 * Recebe o arquivo
 * Lê linha por linha
 * Etapa de classificar afirmações e perguntas
+* Extrair valores das linhas
+ - Identificar se o valor da linguagem humana está em romanos ou inteiros
+ - Identificar valores galacticos
+ - Identificar valores das unidades de metais
 
 Em andamento:
-* Extrair valores das linhas
- - Identificar se o valor da linguagem humana está em romanos ou inteiros OK
- - Identificar a posição na frase que está o valor em liguagem humana OK
- - Conectar as palavras intergalacticas ao valor
-  - Criar matriz p armazenar todos valores conhecidos OK
-  - Criar método (2) para gerenciar o tamanho das matriz FUNCIONAL
- 
+* Responder alguma entrada
 
 A fazer:
-* Arrumar intToRoman - Aplicar regra de 4 letras iguais EXCLUIR
-* Responder alguma entrada
-* Adicionar mais regras
 * Revisar e corrigir erros
 * Revisar e otimizar os métodos
- - intToRoman (fazer tudo em 2 loopings com um int[])

@@ -12,16 +12,15 @@
 package desafiointergalactico;
 
 public final class Tradutor {
-    private String I, V, X, L, C, D, M;
+    protected String[] unidadesIntergalacticas;
+    private double iron, gold, silver;
     private String frase;
-    private int cont; //conta o número de afirmação que estamos para não ocorrer sobreposição
-    private String[][] galacti;
-    private double[] humano; //tradução para números da linguagem humana
-    
+    private String[] fraseV;
+    private int posicao;    
+    private int valor;
     
     public Tradutor(){
-        galacti = new String[1][1];
-        humano = new double[1];
+        unidadesIntergalacticas = new String[7]; //I, V, X, L, C, D, M
     }
     
     public String getFrase(){
@@ -35,118 +34,128 @@ public final class Tradutor {
     
     public void trad(){
         System.out.println(frase);
-        String[] fraseV = frase.split(" ");
-        boolean classifica = classific(fraseV);
-        System.out.println(classifica);
-        if(classifica == true) { //afirmacao
-            aprende(fraseV);
+        fraseV = frase.split(" ");
+        boolean classifica = classific();
+        if(classifica) { //afirmacao
+            aprende();
             
         }
     }
    
-    public boolean classific(String[] fraseV){ //classifica se é afirmação ou pergunta
+    private boolean classific(){ //classifica se é afirmação ou pergunta
         String up = fraseV[fraseV.length -1];  //nenhuma frase chega aqui vazia (lenght == 0) | up = última palavra
         char uLetra = up.charAt(up.length() -1);
         return uLetra != '?'; //true corresponde a afirmação e false corresponde pergunta
     }
     
-    public void aprende(String[] afirm){ //se for afirmaçao vem p cá
-        cont++;
+    private void aprende(){ //se for afirmaçao vem p cá
         boolean tipoR = true;
-        int posicao = 0;
-        for(int i = 0; i < afirm.length; i++){
+        posicao = 0;
+        for(int i = 0; i < fraseV.length; i++){
             try{
-                Integer.parseInt(afirm[i]); 
+                valor = Integer.parseInt(fraseV[i]); 
                 tipoR = false;
                 posicao = i; //já vai retornar em qual posição está o número inteiro
             } catch(NumberFormatException e){
                 //verificar em qual posição está o número em romano
-                if(ehRomano(afirm[i])){
+                if(ehRomano(fraseV[i])){
                     posicao = i;
                 }
             }
         }
         System.out.println(posicao);
         // Considerando que o número galactico esteja sempre no inicio e separado por uma palavra (ex.: representa, vale)
+        
         String[] gala = new String[posicao - 1];
-        
         for(int i = 0; i < gala.length; i++){
-            gala[i] = afirm[i]; //gala é uma variavel que vai sumir, então vou colocar ela em uma matriz para pegar todas as respostas
+            gala[i] = fraseV[i];
         }
-        // Armazenas número galctico
-        atualizaMatriz(gala);
-        
-        //PARA ARMAZENAR O NÚMERO EM ROMANO
-        String roman = "";
-        
+       
+        //Para descobrir os valores das unidades dos metais
         if(tipoR == false){
-            int decimal = Integer.parseInt(afirm[posicao]); 
-        } else {
-            System.out.println("Está em romano");
+            credito(gala);
         }
-        System.out.println("Em romano: " + roman);
-        
-        
-        
+     
         
     }
     
-    public static boolean ehRomano(String roman){
-        char letra;
-        for(int i = 0; i < roman.length(); i++){
-            letra = roman.charAt(i);
-            if(letra != 'I' && letra != 'V' && letra != 'X'){ 
-                if(letra != 'L' && letra != 'C' && letra != 'M'){
-                    return false;
+    private boolean ehRomano(String roman){
+        //romanos: I, V, X, L, C, D, M
+        if(roman.equals("I")){
+            unidadesIntergalacticas[0] = fraseV[0];
+            return true;
+        } else if(roman.equals("V")){
+            unidadesIntergalacticas[1] = fraseV[0];
+            return true;
+        } else if(roman.equals("X")){
+            unidadesIntergalacticas[2] = fraseV[0];
+            return true;
+        } else if(roman.equals("L")){
+            unidadesIntergalacticas[3] = fraseV[0];
+            return true;
+        } else if(roman.equals("C")){
+            unidadesIntergalacticas[4] = fraseV[0];
+            return true;
+        } else if(roman.equals("D")){
+            unidadesIntergalacticas[5] = fraseV[0];
+            return true;
+        } else if(roman.equals("M")){
+            unidadesIntergalacticas[6] = fraseV[0];
+            return true;
+        }        
+        return false;
+    }
+    
+    private void credito(String[] gala){
+        int numRomano;
+        numRomano = traduzirNumeralRomano(gala);
+        if(gala[gala.length - 1].equals("Gold") || gala[gala.length - 1].equals("Ouro")){
+            gold = numRomano / valor;
+        } else if(gala[gala.length - 1].equals("Silver") || gala[gala.length - 1].equals("Prata")){
+            silver = numRomano / valor;
+        } else if(gala[gala.length - 1].equals("Iron") || gala[gala.length - 1].equals("Ferro")){
+            iron = numRomano / valor;
+        }   
+    }
+    
+   
+    private int traduzirNumeralRomano(String[] gala) {
+        int n = 0;
+        int direita = 0;
+        for (int i = gala.length - 1; i >= 0; i--) {
+            int valor = (int) traduzirNumeralRomano(gala[i]);
+            n += valor * Math.signum(valor + 0.5 - direita);
+            direita = valor;
+        }
+        return n;
+    }
+
+    private double traduzirNumeralRomano(String valor) {
+        int cont = 0;
+        double result;
+        double x = 0;
+        double y = 0;
+        for(int i = 0; i < unidadesIntergalacticas.length; i = i + 2){ //Então passa nos valores I, X, C e M
+            if(unidadesIntergalacticas[i] != null){
+                if(unidadesIntergalacticas[i].equals(valor)){
+                    x = Math.pow(10 , cont);
                 }
             }
+            cont++;
         }
-        return true;
-    }
-    
-    public void atualizaMatriz(String[] novaLinha){
-        String[][] nova;
-        if(galacti[0].length > novaLinha.length){
-            nova = new String [cont][galacti[0].length];
-        } else {
-            nova = new String [cont][novaLinha.length];
-        }
-        
-        for(int i = 0; i < galacti.length; i++){
-            for(int j = 0; j < galacti[0].length; j++){
-                nova[i][j] = galacti[i][j];
+        cont = 0;
+        for(int i = 1; i < unidadesIntergalacticas.length; i = i + 2){
+            if(unidadesIntergalacticas[i] != null){
+                if(unidadesIntergalacticas[i].equals(valor)){
+                    y = 5 * Math.floor(Math.pow(10, cont));
+                }
             }
-        }
-        for(int j = 0; j < novaLinha.length; j++){
-                nova[cont - 1][j] = novaLinha[j];
+            cont++;
         }
         
-        galacti = nova;
-        
-        for(int i = 0; i < galacti.length; i++){
-            for(int j = 0; j < galacti[0].length; j++){
-                System.out.print(galacti[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-    
-    public void atualizaArray(double valor){
-        double[] novo;
-        novo = new double[cont];
-        
-        for(int i = 0; i < humano.length; i++){
-            novo[i] = humano[i];
-        }
-        novo[cont - 1] = valor;
-        
-        humano = novo;
-        
-        for(int j = 0; j < humano.length; j++){
-                System.out.print(humano[j] + " ");
-            }
-    }
-            
+        result = Math.floor(x + y);
+        return result;
+    }            
         
 }
 
