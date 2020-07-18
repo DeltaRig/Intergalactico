@@ -1,5 +1,5 @@
 # Desafio de tradução intergalactica
-Este programa deve ajudar um viajante intergalactico a converter valores dos locais que encontrar que tem o mesmo sistema de organização conhecida dos números romananos.
+Este programa deve ajudar um viajante intergaláctico a converter valores dos locais que encontrar que tem o mesmo sistema de organização conhecida dos números romananos.
 
 Desenvolvedora: [Daniela Rigoli](https://www.linkedin.com/in/daniela-rigoli-304b9b190/)
 
@@ -18,13 +18,19 @@ Métodos usados:
 
 	trad: faz o encaminhamento para as outras classes para obter o resultado desejado
 
-	classific: classifica em true se a frase for uma afirmação e false se for uma pergunta
+	classific: classifica em true se a frase for uma afirmação e false se for uma pergunta. E também se for pergunta irá excluir o "?" para não o programa não ter que se preocupar com isso depois, se está com espaço ou não o que poderia conflitar na hora de comparar com outra palavra.
 
 	aprende: é onde ocorre o aprendizado da linguagem, ou seja, as afirmações são encaminhadas para esse métodos
 
-	ehRomano: método usado para verificar se a String é um número romano
+	ehRomano: recebe o valor em romano e armazena seu correspondente intergaláctico
 
-	intToRoman: método usado na conversão de inteiro para romano
+	credito: recebe o número intergalactico com o credito e calcula o valor de um credito do metal e armazena
+
+	traduzirNumeral: transforma o número galáctico em inteiro
+
+	traduzirUnidade: retorna o valor da unidade do número intergalático
+
+	responde: analisa a pergunta e mostra ao usuário a resposta
 
 
 
